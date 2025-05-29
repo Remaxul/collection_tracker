@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MangaLIB Collection Tracker</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    input {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #0088cc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0077b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Отслеживание коллекций MangaLIB</h2>
+    <p>Введи ссылку на коллекцию или её ID:</p>
+    <input type="text" id="collectionInput" placeholder="Например: https://mangalib.me/ru/collections/17886 или 17886">
+    <button onclick="submitCollection()">Добавить</button>
+  </div>
+
+  <script>
+    function submitCollection() {
+      const collectionInput = document.getElementById('collectionInput').value;
+      if (!collectionInput) {
+        alert('Пожалуйста, введи ссылку или ID коллекции!');
+        return;
+      }
+
+      Telegram.WebApp.sendData(JSON.stringify({ collectionInput }));
+      Telegram.WebApp.close();
+    }
+
+    Telegram.WebApp.ready();
+  </script>
+</body>
+</html>
