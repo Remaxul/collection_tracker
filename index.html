@@ -50,18 +50,18 @@
   </div>
 
   <script>
+    Telegram.WebApp.ready();
+    console.log('Init Data:', Telegram.WebApp.initData); // Отладка
     function submitCollection() {
       const collectionInput = document.getElementById('collectionInput').value;
       if (!collectionInput) {
         alert('Пожалуйста, введи ссылку или ID коллекции!');
         return;
       }
-
+      console.log('Отправка данных:', { collectionInput });
       Telegram.WebApp.sendData(JSON.stringify({ collectionInput }));
       Telegram.WebApp.close();
     }
-
-    Telegram.WebApp.ready();
   </script>
 </body>
 </html>
