@@ -51,17 +51,28 @@
 
   <script>
     Telegram.WebApp.ready();
-    console.log('Init Data:', Telegram.WebApp.initData); // Отладка
+    const initData = Telegram.WebApp.initData;
+    console.log('Init Data:', initData);
+    if (!initData) {
+      console.error('Ошибка: initData пустой. Telegram не передал данные инициализации.');
+      alert('Ошибка инициализации Mini App. Пожалуйста, перезапустите бота и попробуйте снова.');
+    }
+  
     function submitCollection() {
       const collectionInput = document.getElementById('collectionInput').value;
       if (!collectionInput) {
         alert('Пожалуйста, введи ссылку или ID коллекции!');
         return;
       }
-      console.log('Отправка данных:', { collectionInput });
-      Telegram.WebApp.sendData(JSON.stringify({ collectionInput }));
+      const data = JSON.stringify({ collectionInput });
+      console.log('Отправляемые данные:', data);
+      Telegram.WebApp.sendData(data);
       Telegram.WebApp.close();
     }
+  
+    Telegram.WebApp.onEvent('webAppDataSent', () => {
+      console.log('Данные успешно отправлены в Telegram');
+    });
   </script>
 </body>
 </html>
