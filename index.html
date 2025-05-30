@@ -53,15 +53,14 @@
     Telegram.WebApp.ready();
     const initData = Telegram.WebApp.initData;
     console.log('Init Data:', initData);
-  
+
     if (!initData) {
-      console.error('Ошибка: initData пустой. Открой Mini App через меню прикрепления или прямую ссылку.');
+      console.error('Ошибка: initData пустой. Открой Mini App через меню прикрепления или по ссылке вида https://t.me/YourBotName?startapp=track_collection');
       alert('Ошибка инициализации. Открой Mini App через меню прикрепления или по ссылке вида https://t.me/YourBotName?startapp=track_collection');
     } else {
       console.log('Auth Date:', new Date(initData.auth_date * 1000));
-      // Здесь можно добавить валидацию hash на стороне клиента, если нужно
     }
-  
+
     function submitCollection() {
       const collectionInput = document.getElementById('collectionInput').value;
       if (!collectionInput) {
@@ -77,7 +76,7 @@
       Telegram.WebApp.sendData(data);
       Telegram.WebApp.close();
     }
-  
+
     Telegram.WebApp.onEvent('webAppDataSent', () => {
       console.log('Данные успешно отправлены в Telegram');
     });
