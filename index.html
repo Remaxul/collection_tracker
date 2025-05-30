@@ -45,7 +45,7 @@
   <div class="container">
     <h2>Отслеживание коллекций MangaLIB</h2>
     <p>Введи ссылку на коллекцию или её ID:</p>
-    <input type="text" id="collectionInput" placeholder="Например: https://mangalib.me/ru/collections/17886 или 17886">
+    <input type="text" id="collectionInput" placeholder="Например: https://mangalib.me/ru/collections/14692 или 14692">
     <button onclick="submitCollection()">Добавить</button>
   </div>
 
@@ -57,7 +57,7 @@
       console.error('Ошибка: initData пустой. Telegram не передал данные инициализации.');
       alert('Ошибка инициализации Mini App. Пожалуйста, перезапустите бота и попробуйте снова.');
     }
-  
+
     function submitCollection() {
       const collectionInput = document.getElementById('collectionInput').value;
       if (!collectionInput) {
@@ -69,7 +69,7 @@
       Telegram.WebApp.sendData(data);
       Telegram.WebApp.close();
     }
-  
+
     Telegram.WebApp.onEvent('webAppDataSent', () => {
       console.log('Данные успешно отправлены в Telegram');
     });
